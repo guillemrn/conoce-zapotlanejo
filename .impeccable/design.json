@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-13T22:19:12Z",
+  "title": "Design System: Conoce Zapotlanejo",
+  "extensions": {
+    "colorMeta": {
+      "verde-agave-profundo": {
+        "role": "primary",
+        "displayName": "Verde Agave Profundo",
+        "canonical": "#173c35",
+        "tonalRamp": ["#07110f", "#0d221e", "#173c35", "#2b5a51", "#4b786f", "#78a098", "#b4cbc6", "#e8f0ee"]
+      },
+      "papel-cantera": {
+        "role": "neutral",
+        "displayName": "Papel Cantera",
+        "canonical": "#f5efe3",
+        "tonalRamp": ["#28251f", "#4b453b", "#72695b", "#9c9180", "#c3b8a8", "#ded5c7", "#f5efe3", "#fcf9f3"]
+      },
+      "papel-claro": {
+        "role": "neutral",
+        "displayName": "Papel Claro",
+        "canonical": "#fffaf0",
+        "tonalRamp": ["#29261f", "#4e493e", "#766e5e", "#a19886", "#c9bfac", "#e8dfcf", "#fffaf0", "#fffdf9"]
+      },
+      "barro-rosado": {
+        "role": "secondary",
+        "displayName": "Barro Rosado",
+        "canonical": "#a45f5a",
+        "tonalRamp": ["#271313", "#492422", "#6c3936", "#8d4e4a", "#a45f5a", "#c18984", "#dfb6b1", "#f8e7e4"]
+      },
+      "maiz-tostado": {
+        "role": "secondary",
+        "displayName": "Maíz Tostado",
+        "canonical": "#d9a93d",
+        "tonalRamp": ["#2b2006", "#513d0b", "#785c13", "#9f7b20", "#d9a93d", "#e6c56e", "#f1dda6", "#fbf2db"]
+      },
+      "cielo-de-plaza": {
+        "role": "tertiary",
+        "displayName": "Cielo de Plaza",
+        "canonical": "#8ccbd0",
+        "tonalRamp": ["#102729", "#1d484c", "#326b70", "#548f94", "#8ccbd0", "#acdce0", "#ccebed", "#edf8f8"]
+      },
+      "carbon-suave": {
+        "role": "neutral",
+        "displayName": "Carbón Suave",
+        "canonical": "#242b29",
+        "tonalRamp": ["#0b0d0c", "#171b1a", "#242b29", "#434c49", "#68716e", "#969d9a", "#c7cbca", "#f0f2f1"]
+      },
+      "campo-claro": {
+        "role": "neutral",
+        "displayName": "Campo Claro",
+        "canonical": "#fffdf7",
+        "tonalRamp": ["#292720", "#4d4a40", "#767166", "#a19b8e", "#cbc5b7", "#eae5da", "#fffdf7", "#ffffff"]
+      },
+      "linea-agave": {
+        "role": "neutral",
+        "displayName": "Línea Agave",
+        "canonical": "rgba(23, 60, 53, 0.2)",
+        "tonalRamp": ["#07110f", "#0d221e", "#173c35", "#2b5a51", "#4b786f", "#78a098", "#b4cbc6", "#e8f0ee"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display editorial", "purpose": "Mensaje principal de superficies persuasivas." },
+      "headline": { "displayName": "Encabezado de sección", "purpose": "Introduce capítulos y bloques narrativos." },
+      "title": { "displayName": "Título narrativo", "purpose": "Tarjetas, lugares y momentos de una ruta." },
+      "body": { "displayName": "Cuerpo digital", "purpose": "Explicaciones y lectura funcional." },
+      "label": { "displayName": "Etiqueta", "purpose": "Categorías, horarios, navegación y metadatos." }
+    },
+    "shadows": [
+      { "name": "fotografia-principal", "value": "28px 34px 70px rgba(23,60,53,.18)", "purpose": "Separar el hero de su fondo sin crear una tarjeta flotante." },
+      { "name": "tarjeta-narrativa", "value": "0 34px 70px rgba(0,0,0,.2)", "purpose": "Profundidad reservada para momentos de recorrido." },
+      { "name": "fotografia-breve", "value": "0 14px 38px rgba(23,60,53,.15)", "purpose": "Acompañar fotografías pequeñas superpuestas." }
+    ],
+    "motion": [
+      { "name": "estado-rapido", "value": "250ms ease", "purpose": "Hover, foco y cambios de estado directos." },
+      { "name": "revelado-editorial", "value": "700ms cubic-bezier(.22,1,.36,1)", "purpose": "Expansión de paneles y movimientos estructurales." },
+      { "name": "fotografia-suave", "value": "800ms ease", "purpose": "Escala contenida de imágenes al interactuar." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "560px" },
+      { "name": "stack", "value": "900px" },
+      { "name": "compact", "value": "1000px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal encapsulada, directa y de alto contraste.",
+      "html": "<button class=\"ds-btn-primary\">QUIERO ACCESO <span aria-hidden=\"true\">↗</span></button>",
+      "css": ".ds-btn-primary{min-height:52px;padding:0 22px;display:inline-flex;align-items:center;justify-content:space-between;gap:34px;border:1px solid var(--green,#173c35);border-radius:999px;background:var(--green,#173c35);color:var(--cream,#f5efe3);font:800 12px/1.2 var(--font-geist-sans,Arial,sans-serif);cursor:pointer;transition:transform .25s ease,background .25s ease,border-color .25s ease}.ds-btn-primary:hover{transform:translateY(-3px);background:var(--clay,#a45f5a);border-color:var(--clay,#a45f5a)}.ds-btn-primary:focus-visible{outline:3px solid var(--maize,#d9a93d);outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción alternativa que preserva el fondo editorial.",
+      "html": "<button class=\"ds-btn-secondary\">RECOMENDAR UN LUGAR <span aria-hidden=\"true\">↗</span></button>",
+      "css": ".ds-btn-secondary{min-height:52px;padding:0 22px;display:inline-flex;align-items:center;justify-content:space-between;gap:34px;border:1px solid var(--green,#173c35);border-radius:999px;background:transparent;color:var(--green,#173c35);font:800 12px/1.2 var(--font-geist-sans,Arial,sans-serif);cursor:pointer;transition:transform .25s ease,background .25s ease,color .25s ease}.ds-btn-secondary:hover{transform:translateY(-3px);background:var(--green,#173c35);color:var(--cream,#f5efe3)}.ds-btn-secondary:focus-visible{outline:3px solid var(--clay,#a45f5a);outline-offset:3px}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Campo recto, claro y funcional dentro de superficies editoriales.",
+      "html": "<label class=\"ds-field\"><span>TU NOMBRE</span><input type=\"text\" placeholder=\"¿Cómo te llamas?\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:8px;color:var(--green,#173c35);font-family:var(--font-geist-sans,Arial,sans-serif)}.ds-field span{font-size:9px;font-weight:850;letter-spacing:.1em}.ds-field input{width:100%;padding:14px;border:1px solid rgba(23,60,53,.25);border-radius:0;background:#fffdf7;color:var(--green,#173c35);font:400 13px/1.4 var(--font-geist-sans,Arial,sans-serif);outline:none}.ds-field input:focus{border-color:var(--clay,#a45f5a);box-shadow:0 0 0 3px rgba(164,95,90,.12)}"
+    },
+    {
+      "name": "Recommendation Card",
+      "kind": "card",
+      "refersTo": "card-maiz",
+      "description": "Tarjeta narrativa que combina horario, lugar y recomendación breve.",
+      "html": "<article class=\"ds-recommendation-card\"><span>12:30</span><h3>Conocer lo hecho aquí</h3><p>Comercios, talleres y productos con historia local.</p></article>",
+      "css": ".ds-recommendation-card{max-width:520px;padding:30px;background:var(--maize,#d9a93d);color:var(--green,#173c35);box-shadow:0 34px 70px rgba(0,0,0,.2)}.ds-recommendation-card span{font:850 10px/1.2 var(--font-geist-sans,Arial,sans-serif);letter-spacing:.13em}.ds-recommendation-card h3{margin:15px 0 8px;font:400 39px/1 Georgia,serif}.ds-recommendation-card p{margin:0;font:400 12px/1.6 var(--font-geist-sans,Arial,sans-serif)}"
+    },
+    {
+      "name": "Form Tabs",
+      "kind": "chip",
+      "refersTo": "button-primary",
+      "description": "Selector binario plano para cambiar el modo de participación.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button role=\"tab\" aria-selected=\"true\">QUIERO CONOCERLO</button><button role=\"tab\">QUIERO RECOMENDAR</button></div>",
+      "css": ".ds-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;background:var(--paper,#fffaf0)}.ds-tabs button{padding:15px;border:0;background:transparent;color:var(--green,#173c35);font:850 12px/1.2 var(--font-geist-sans,Arial,sans-serif);cursor:pointer}.ds-tabs button[aria-selected=true]{background:var(--maize,#d9a93d)}.ds-tabs button:focus-visible{outline:2px solid var(--clay,#a45f5a);outline-offset:-2px}"
+    },
+    {
+      "name": "FAQ Row",
+      "kind": "custom",
+      "refersTo": "field",
+      "description": "Pregunta editorial con divisor fino y revelado nativo.",
+      "html": "<details class=\"ds-faq\"><summary>¿Quién puede recomendar un lugar?<span aria-hidden=\"true\">+</span></summary><p>Cualquier persona que conozca un lugar valioso en Zapotlanejo.</p></details>",
+      "css": ".ds-faq{max-width:680px;border-top:1px solid rgba(23,60,53,.2);border-bottom:1px solid rgba(23,60,53,.2);color:var(--green,#173c35)}.ds-faq summary{padding:28px 0;display:flex;justify-content:space-between;gap:20px;list-style:none;cursor:pointer;font:400 24px/1.2 Georgia,serif}.ds-faq summary span{color:var(--clay,#a45f5a);transition:transform .25s ease}.ds-faq[open] summary span{transform:rotate(45deg)}.ds-faq p{max-width:620px;margin:0 0 27px;font:400 13px/1.7 var(--font-geist-sans,Arial,sans-serif)}.ds-faq summary:focus-visible{outline:2px solid var(--clay,#a45f5a);outline-offset:4px}"
+    },
+    {
+      "name": "Textile Pattern Accent",
+      "kind": "custom",
+      "description": "Firma geométrica secundaria para recortes, bordes y transiciones.",
+      "html": "<div class=\"ds-pattern-accent\" role=\"img\" aria-label=\"Trama textil geométrica de Zapotlanejo\"></div>",
+      "css": ".ds-pattern-accent{width:320px;height:88px;background-image:linear-gradient(rgba(245,239,227,.08),rgba(245,239,227,.08)),url('/trama-textil-zapotlanejo.webp');background-position:center;background-size:320px;border-left:10px solid var(--green,#173c35)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Lugares recomendados",
+    "overview": "La identidad debe sentirse como una recomendación valiosa compartida por alguien de confianza: humana, concreta y cercana. Su carácter es cálido, editorial y comunitario; presenta Zapotlanejo con orgullo y criterio, sin adoptar el tono de una institución pública ni el lenguaje promocional de una campaña turística.\n\nLa composición combina titulares editoriales amplios, información breve en sans serif, fotografía local y bloques cromáticos inspirados en la actividad productiva del municipio. La trama textil geométrica es el gesto distintivo del sistema: aparece en recortes, bordes, separadores o fondos parciales, con suficiente detalle para ser reconocible pero sin convertirse en el foco principal.",
+    "keyCharacteristics": [
+      "Titulares editoriales de gran escala y lectura expresiva.",
+      "Contraste entre superficies planas, fotografía local y color productivo.",
+      "Información breve, directa y fácil de recorrer desde el teléfono.",
+      "Geometría textil usada como firma secundaria.",
+      "Identidad municipal seria, cercana y explícitamente apartidista."
+    ],
+    "rules": [
+      { "name": "The Apartisan Accent Rule", "body": "El Barro Rosado y el Maíz Tostado nunca deben desplazarse hacia un naranja político saturado ni dominar juntos una pantalla.", "section": "colors" },
+      { "name": "The Grounded Palette Rule", "body": "El Verde Agave Profundo y los tonos de papel siempre deben ocupar más espacio que los colores de acento.", "section": "colors" },
+      { "name": "The Editorial Contrast Rule", "body": "La serif expresa la historia y la sans serif organiza la acción; no intercambiar sus funciones por conveniencia.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Las sombras son ambientales y excepcionales; nunca se usan para convertir cada sección en una tarjeta.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar Verde Agave Profundo y Papel Cantera como base dominante.",
+      "Do reservar la serif para mensajes con carga narrativa y la sans serif para navegación y acción.",
+      "Do aplicar la trama textil en detalles, recortes o transiciones reconocibles pero secundarios.",
+      "Do priorizar fotografía local real y mantener visibles sus créditos cuando corresponda.",
+      "Do conservar espacios amplios y una adaptación móvil de una sola columna."
+    ],
+    "donts": [
+      "Don't convertir la interfaz en un portal gubernamental, una campaña política o una página turística genérica.",
+      "Don't introducir naranjas saturados ni combinaciones que sugieran identidad partidista.",
+      "Don't usar el patrón como fondo dominante detrás de textos largos o formularios.",
+      "Don't encerrar cada bloque en una tarjeta redondeada con sombra.",
+      "Don't inventar testimonios, métricas, comercios o evidencia social."
+    ]
+  }
+}
