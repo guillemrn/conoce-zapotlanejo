@@ -1,14 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -42,7 +37,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png" },
-      { url: "/logo-conoce-zapotlanejo.svg", type: "image/svg+xml" },
     ],
     apple: [{ url: "/favicon.png", type: "image/png" }],
     shortcut: "/favicon.png",
@@ -57,10 +51,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/zapotlanejo-centro.webp",
-        width: 1200,
-        height: 630,
-        alt: "Centro Histórico y Parroquia de Zapotlanejo, Jalisco",
+        url: "/open-graph.png",
+        width: 1730,
+        height: 909,
+        alt: "Conoce Zapotlanejo | Guía Local de Lugares, Moda y Sabores",
       },
     ],
   },
@@ -69,7 +63,7 @@ export const metadata: Metadata = {
     title: "Conoce Zapotlanejo | Guía Local de Lugares, Moda y Sabores",
     description:
       "Descubre lugares, gastronomía, moda y experiencias recomendadas en Zapotlanejo, Jalisco.",
-    images: ["/zapotlanejo-centro.webp"],
+    images: ["/open-graph.png"],
   },
   robots: {
     index: true,
@@ -109,7 +103,7 @@ const jsonLd = {
       "@id": "https://conocezapotlanejo.com/#organization",
       name: "Conoce Zapotlanejo",
       url: "https://conocezapotlanejo.com",
-      logo: "https://conocezapotlanejo.com/conoce-zapotlanejo-logo.png",
+      logo: "https://conocezapotlanejo.com/logo-conoce-zapotlanejo.svg",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Zapotlanejo",
@@ -138,7 +132,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} antialiased`}
       >
         {children}
       </body>
