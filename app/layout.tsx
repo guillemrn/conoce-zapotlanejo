@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import CookieConsent from "./CookieConsent";
 import "./globals.css";
 
@@ -196,6 +197,7 @@ export default function RootLayout({
       >
         {children}
         <CookieConsent />
+        <Analytics />
       </body>
     </html>
   );
