@@ -175,6 +175,7 @@ export default function Home() {
         </a>
         <p>Una iniciativa comunitaria para descubrir y compartir lugares recomendados de Zapotlanejo.</p>
         <a className="footer-link" href="#registro">Registrarme o recomendar <Arrow /></a>
+        <p className="footer-credit">Diseñado y desarrollado por <a href="https://guillermoml.com" target="_blank" rel="noreferrer">Guillermo Moreno</a>.</p>
         <p className="photo-credits">Fotografías: <a href="https://commons.wikimedia.org/wiki/File:Zapotlanejo_(20200506).jpg" target="_blank" rel="noreferrer">José González Peña</a> y <a href="https://commons.wikimedia.org/wiki/File:Parroquia_de_nuestra_se%C3%B1ora_del_rosario_-_panoramio.jpg" target="_blank" rel="noreferrer">Richard-kun</a>, vía Wikimedia Commons. Licencias <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a> y <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noreferrer">CC BY 3.0</a>.</p>
       </footer>
     </main>
