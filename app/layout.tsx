@@ -59,10 +59,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/open-graph.png",
-        width: 1730,
-        height: 909,
-        alt: "Logo de Conoce Zapotlanejo y guía local de lugares recomendados",
+        url: "/social-share-conoce-zapotlanejo.png",
+        width: 1200,
+        height: 630,
+        alt: "Conoce Zapotlanejo, guía digital de lugares recomendados por la comunidad",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     title: "Conoce Zapotlanejo | Guía local de lugares recomendados",
     description:
       "Descubre lugares, gastronomía, moda y experiencias recomendadas por la comunidad en Zapotlanejo, Jalisco.",
-    images: ["/open-graph.png"],
+    images: ["/social-share-conoce-zapotlanejo.png"],
   },
   robots: {
     index: true,
@@ -157,9 +157,9 @@ const jsonLd = {
       },
       primaryImageOfPage: {
         "@type": "ImageObject",
-        url: "https://conocezapotlanejo.com/open-graph.png",
-        width: 1730,
-        height: 909,
+        url: "https://conocezapotlanejo.com/social-share-conoce-zapotlanejo.png",
+        width: 1200,
+        height: 630,
       },
       potentialAction: [
         {

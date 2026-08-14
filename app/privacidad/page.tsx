@@ -29,7 +29,7 @@ export default function PrivacyPage() {
         <p>Podemos usar proveedores tecnológicos para almacenar registros, automatizar seguimiento o medir analítica. Estos proveedores deberán tratar la información únicamente para las finalidades indicadas.</p>
 
         <h2>Derechos ARCO</h2>
-        <p>Puedes solicitar acceso, rectificación, cancelación u oposición al tratamiento de tus datos. Por ahora, el canal de contacto disponible es el sitio de Guillermo Moreno: <a href="https://guillermoml.com" target="_blank" rel="noreferrer">guillermoml.com</a>.</p>
+        <p>Puedes solicitar acceso, rectificación, cancelación u oposición al tratamiento de tus datos escribiendo a <a href="mailto:conocezapotlanejo@gmail.com">conocezapotlanejo@gmail.com</a>.</p>
 
         <h2>Cambios al aviso</h2>
         <p>Este aviso puede actualizarse conforme evolucione Conoce Zapotlanejo, se agreguen nuevas funciones o cambien los proveedores utilizados. La versión vigente estará disponible en esta página.</p>
