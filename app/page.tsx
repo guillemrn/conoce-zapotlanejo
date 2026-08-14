@@ -14,6 +14,8 @@ const revealText = "No queremos crear otra lista genérica. Queremos reunir luga
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": "https://conocezapotlanejo.com/#faq",
+  url: "https://conocezapotlanejo.com/#preguntas",
   mainEntity: [
     {
       "@type": "Question",
@@ -73,7 +75,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">Próximamente, una guía hecha desde Zapotlanejo</p>
           <h1>Zapotlanejo se conoce <em>viviéndolo.</em></h1>
-          <p className="hero-lead">Estamos preparando una guía digital con lugares, negocios, sabores y experiencias recomendadas por la comunidad.</p>
+          <p className="hero-lead">Estamos preparando una guía digital para descubrir dónde comer, comprar y qué hacer en Zapotlanejo, Jalisco, con lugares recomendados por la comunidad.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#registro">Quiero acceso anticipado <Arrow /></a>
             <a className="button button-secondary" href="#registro">Recomendar un lugar <Arrow /></a>
@@ -147,7 +149,7 @@ export default function Home() {
       <section className="register-section" id="registro">
         <div className="register-heading"><p>Sé parte desde el inicio</p><h2>Ayúdanos a construir la primera guía de <em>recomendaciones.</em></h2></div>
         <div className="register-grid">
-          <div className="register-copy"><p>Elige si quieres recibir aviso del lanzamiento o recomendar un lugar para revisión.</p><ul><li>Te avisaremos cuando la primera versión esté lista</li><li>Podrás sugerir lugares, negocios o experiencias</li><li>Revisaremos las recomendaciones antes de publicarlas</li></ul></div>
+          <div className="register-copy"><p>Elige si quieres recibir aviso del lanzamiento o recomendar un lugar de Zapotlanejo para revisión.</p><ul><li>Te avisaremos cuando la primera versión esté lista</li><li>Podrás sugerir lugares, negocios o experiencias locales</li><li>Revisaremos las recomendaciones antes de publicarlas</li></ul></div>
           <SignupForm />
         </div>
       </section>

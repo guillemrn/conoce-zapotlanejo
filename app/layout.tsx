@@ -10,18 +10,21 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL("https://conocezapotlanejo.com"),
   title: {
-    default: "Conoce Zapotlanejo | Guía Local de Lugares, Moda y Sabores",
+    default: "Conoce Zapotlanejo | Guía local de lugares recomendados",
     template: "%s | Conoce Zapotlanejo",
   },
   description:
-    "Descubre los mejores lugares, comercios, gastronomía tradicional, moda textil y experiencias en Zapotlanejo, Jalisco recomendados por su propia comunidad.",
+    "Guía digital en preparación para descubrir dónde comer, comprar y qué hacer en Zapotlanejo, Jalisco, con recomendaciones revisadas de la comunidad.",
   applicationName: "Conoce Zapotlanejo",
   authors: [{ name: "Comunidad de Conoce Zapotlanejo" }],
   creator: "Conoce Zapotlanejo",
   publisher: "Conoce Zapotlanejo",
+  referrer: "origin-when-cross-origin",
   keywords: [
     "Zapotlanejo",
     "Zapotlanejo Jalisco",
+    "Conoce Zapotlanejo",
+    "guía de Zapotlanejo",
     "ropa en Zapotlanejo",
     "turismo Zapotlanejo",
     "compras Zapotlanejo",
@@ -33,7 +36,11 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
+    languages: {
+      "es-MX": "/",
+    },
   },
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png" },
@@ -42,9 +49,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
   },
   openGraph: {
-    title: "Conoce Zapotlanejo | Guía Local de Lugares, Moda y Sabores",
+    title: "Conoce Zapotlanejo | Guía local de lugares recomendados",
     description:
-      "Descubre los mejores lugares, comercios, gastronomía tradicional, moda textil y experiencias en Zapotlanejo, Jalisco recomendados por la comunidad.",
+      "Una guía digital en preparación para descubrir lugares, sabores, moda, comercios y experiencias recomendadas en Zapotlanejo, Jalisco.",
     url: "https://conocezapotlanejo.com",
     siteName: "Conoce Zapotlanejo",
     locale: "es_MX",
@@ -54,15 +61,15 @@ export const metadata: Metadata = {
         url: "/open-graph.png",
         width: 1730,
         height: 909,
-        alt: "Conoce Zapotlanejo | Guía Local de Lugares, Moda y Sabores",
+        alt: "Logo de Conoce Zapotlanejo y guía local de lugares recomendados",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Conoce Zapotlanejo | Guía Local de Lugares, Moda y Sabores",
+    title: "Conoce Zapotlanejo | Guía local de lugares recomendados",
     description:
-      "Descubre lugares, gastronomía, moda y experiencias recomendadas en Zapotlanejo, Jalisco.",
+      "Descubre lugares, gastronomía, moda y experiencias recomendadas por la comunidad en Zapotlanejo, Jalisco.",
     images: ["/open-graph.png"],
   },
   robots: {
@@ -75,6 +82,14 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
+  other: {
+    "codex-preview": "development",
   },
   category: "travel",
 };
@@ -94,9 +109,13 @@ const jsonLd = {
       "@id": "https://conocezapotlanejo.com/#website",
       url: "https://conocezapotlanejo.com",
       name: "Conoce Zapotlanejo",
+      alternateName: "Guía local de Zapotlanejo",
       description:
-        "Guía colaborativa para descubrir negocios, lugares, sabores y experiencias en Zapotlanejo, Jalisco.",
+        "Guía digital en preparación para descubrir negocios, lugares, sabores y experiencias en Zapotlanejo, Jalisco.",
       inLanguage: "es-MX",
+      publisher: {
+        "@id": "https://conocezapotlanejo.com/#organization",
+      },
     },
     {
       "@type": "Organization",
@@ -114,6 +133,46 @@ const jsonLd = {
         "@type": "AdministrativeArea",
         name: "Zapotlanejo, Jalisco",
       },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://conocezapotlanejo.com/#webpage",
+      url: "https://conocezapotlanejo.com",
+      name: "Conoce Zapotlanejo | Guía local de lugares recomendados",
+      description:
+        "Landing de registro para recibir el lanzamiento y recomendar lugares, negocios y experiencias de Zapotlanejo, Jalisco.",
+      isPartOf: {
+        "@id": "https://conocezapotlanejo.com/#website",
+      },
+      about: {
+        "@type": "Place",
+        name: "Zapotlanejo",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Zapotlanejo",
+          addressRegion: "Jalisco",
+          addressCountry: "MX",
+        },
+      },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: "https://conocezapotlanejo.com/open-graph.png",
+        width: 1730,
+        height: 909,
+      },
+      potentialAction: [
+        {
+          "@type": "RegisterAction",
+          name: "Recibir aviso del lanzamiento",
+          target: "https://conocezapotlanejo.com/#registro",
+        },
+        {
+          "@type": "RecommendAction",
+          name: "Recomendar un lugar de Zapotlanejo",
+          target: "https://conocezapotlanejo.com/#registro",
+        },
+      ],
+      inLanguage: "es-MX",
     },
   ],
 };
