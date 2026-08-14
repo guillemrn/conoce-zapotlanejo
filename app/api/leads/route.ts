@@ -23,6 +23,14 @@ export async function POST(request: Request) {
       );
     }
 
+    if (body.privacyConsent !== "accepted") {
+      return NextResponse.json(
+        { error: "Debes aceptar el aviso de privacidad" },
+        { status: 400 }
+      );
+    }
+
+    const now = new Date().toISOString();
     const lead = {
       type,
       name,
@@ -32,8 +40,10 @@ export async function POST(request: Request) {
       placeName: clean(body.placeName, 120),
       category: clean(body.category, 80),
       note: clean(body.note),
+      privacyConsent: "accepted",
+      privacyAcceptedAt: now,
       source: "conocezapotlanejo.com",
-      createdAt: new Date().toISOString(),
+      createdAt: now,
     };
 
     console.log("[Conoce Zapotlanejo] Nuevo registro:", lead);

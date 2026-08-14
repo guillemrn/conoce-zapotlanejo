@@ -84,7 +84,7 @@ export default function Home() {
         </div>
 
         <figure className="hero-photo-frame">
-          <img src="/zapotlanejo-centro.webp" alt="Parroquia y plaza principal de Zapotlanejo, Jalisco" fetchPriority="high" />
+          <img src="/zapotlanejo-parroquia.webp" alt="Parroquia y plaza principal de Zapotlanejo, Jalisco" fetchPriority="high" />
           <figcaption><span>Centro de Zapotlanejo</span><span>20° 37′ N</span></figcaption>
           <div className="hero-weave-corner" aria-hidden="true"><i /><i /><i /></div>
           <div className="hero-route" aria-hidden="true"><i /><i /><i /></div>
@@ -127,22 +127,22 @@ export default function Home() {
         </div>
         <div className="experience-accordion">
           <article className="experience-panel experience-panel--food">
-            <img src="/zapotlanejo-artesanias.webp" alt="Colores y artesanías locales de Zapotlanejo" loading="lazy" />
+            <img src="/zapotlanejo-comida.jpeg" alt="Colores y artesanías locales de Zapotlanejo" loading="lazy" />
             <div className="panel-shade" /><div className="panel-content"><span>Comer</span><h3>Sabores que valen la parada</h3><p>Antojitos, cocinas, cafés y productos recomendados por gente local.</p></div>
           </article>
           <article className="experience-panel experience-panel--shop">
-            <img src="/zapotlanejo-centro.webp" alt="Centro tradicional de Zapotlanejo" loading="lazy" />
+            <img src="/zapotlanejo-negocios.png" alt="Centro tradicional de Zapotlanejo" loading="lazy" />
             <div className="panel-shade" /><div className="panel-content"><span>Comprar</span><h3>Negocios hechos desde aquí</h3><p>Moda, talleres, productores y comercios que dan identidad al municipio.</p></div>
           </article>
           <article className="experience-panel experience-panel--culture">
-            <img src="/zapotlanejo-parroquia.webp" alt="Arquitectura de cantera en Zapotlanejo" loading="lazy" />
+            <img src="/zapotlanejo-eventos.jpeg" alt="Arquitectura de cantera en Zapotlanejo" loading="lazy" />
             <div className="panel-shade" /><div className="panel-content"><span>Conocer</span><h3>Rincones con historia</h3><p>Eventos, arquitectura, recorridos y espacios que ayudan a entender el municipio.</p></div>
           </article>
         </div>
       </section>
 
       <section className="community-quote" id="participa">
-        <div className="quote-image"><img src="/zapotlanejo-centro.webp" alt="Vista de la plaza y parroquia de Zapotlanejo" loading="lazy" /></div>
+        <div className="quote-image"><img src="/zapotlanejo-puente.jpeg" alt="Puente de Calderón en Zapotlanejo" loading="lazy" /></div>
         <div className="quote-copy"><blockquote>Los mejores lugares no siempre son los más conocidos. Son los que alguien se toma el tiempo de recomendar.</blockquote><p>Cada recomendación será revisada antes de publicarse.</p></div>
       </section>
 
@@ -175,8 +175,12 @@ export default function Home() {
         </a>
         <p>Una iniciativa comunitaria para descubrir y compartir lugares recomendados de Zapotlanejo.</p>
         <a className="footer-link" href="#registro">Registrarme o recomendar <Arrow /></a>
+        <nav className="legal-links" aria-label="Documentos legales">
+          <a href="/privacidad">Privacidad</a>
+          <a href="/terminos">Términos</a>
+          <a href="/cookies">Cookies</a>
+        </nav>
         <p className="footer-credit">Diseñado y desarrollado por <a href="https://guillermoml.com" target="_blank" rel="noreferrer">Guillermo Moreno</a>.</p>
-        <p className="photo-credits">Fotografías: <a href="https://commons.wikimedia.org/wiki/File:Zapotlanejo_(20200506).jpg" target="_blank" rel="noreferrer">José González Peña</a> y <a href="https://commons.wikimedia.org/wiki/File:Parroquia_de_nuestra_se%C3%B1ora_del_rosario_-_panoramio.jpg" target="_blank" rel="noreferrer">Richard-kun</a>, vía Wikimedia Commons. Licencias <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a> y <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noreferrer">CC BY 3.0</a>.</p>
       </footer>
     </main>
   );

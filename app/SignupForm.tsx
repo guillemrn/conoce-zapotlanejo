@@ -90,8 +90,12 @@ export default function SignupForm() {
             </>
           )}
           <label className="honeypot" aria-hidden="true">Sitio web<input name="website" tabIndex={-1} autoComplete="off" /></label>
+          <label className="consent-field">
+            <input name="privacyConsent" type="checkbox" value="accepted" required />
+            <span>Acepto el <a href="/privacidad" target="_blank" rel="noreferrer">Aviso de privacidad</a> y entiendo que mis datos se usarán para dar seguimiento a Conoce Zapotlanejo.</span>
+          </label>
           <div className="form-footer">
-            <p>Usaremos tu contacto sólo para dar seguimiento a Conoce Zapotlanejo.</p>
+            <p>También puedes revisar nuestros <a href="/terminos" target="_blank" rel="noreferrer">Términos</a> y la <a href="/cookies" target="_blank" rel="noreferrer">Política de cookies</a>.</p>
             <button className="button submit-button" type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>
               {status === "sending" && <span className="button-spinner" aria-hidden="true" />}
               {status === "sending" ? "Enviando..." : mode === "early_access" ? "Recibir aviso" : "Enviar recomendación"}

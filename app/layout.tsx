@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import CookieConsent from "./CookieConsent";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -194,6 +195,7 @@ export default function RootLayout({
         className={`${geistSans.variable} antialiased`}
       >
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
