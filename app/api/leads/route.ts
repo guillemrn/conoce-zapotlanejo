@@ -32,10 +32,31 @@ export async function POST(request: Request) {
       placeName: clean(body.placeName, 120),
       category: clean(body.category, 80),
       note: clean(body.note),
+      source: "conocezapotlanejo.com",
       createdAt: new Date().toISOString(),
     };
 
     console.log("[Conoce Zapotlanejo] Nuevo registro:", lead);
+
+    // Forward to Make.com Webhook if configured
+    const makeWebhookUrl = process.env.MAKE_WEBHOOK_URL;
+    if (makeWebhookUrl) {
+      try {
+        const makeResponse = await fetch(makeWebhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(lead),
+        });
+
+        if (!makeResponse.ok) {
+          console.warn("[Make.com] Webhook returned non-ok status:", makeResponse.status);
+        } else {
+          console.log("[Make.com] Lead enviado exitosamente a Make.");
+        }
+      } catch (webhookError) {
+        console.error("[Make.com] Error al enviar webhook:", webhookError);
+      }
+    }
 
     return NextResponse.json({ ok: true, data: lead }, { status: 201 });
   } catch (error) {

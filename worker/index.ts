@@ -5,6 +5,7 @@ import handler from "vinext/server/app-router-entry";
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
+  MAKE_WEBHOOK_URL?: string;
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
@@ -34,6 +35,12 @@ async function createLead(request: Request, env: Env): Promise<Response> {
       return Response.json({ error: "Nombre y contacto son obligatorios" }, { status: 400 });
     }
 
+    const origin = clean(body.origin, 80);
+    const interest = clean(body.interest, 80);
+    const placeName = clean(body.placeName, 120);
+    const category = clean(body.category, 80);
+    const note = clean(body.note);
+
     await env.DB.prepare(
       `INSERT INTO leads
         (type, name, contact, origin, interest, place_name, category, note, status)
@@ -42,12 +49,35 @@ async function createLead(request: Request, env: Env): Promise<Response> {
       type,
       name,
       contact,
-      clean(body.origin, 80),
-      clean(body.interest, 80),
-      clean(body.placeName, 120),
-      clean(body.category, 80),
-      clean(body.note)
+      origin,
+      interest,
+      placeName,
+      category,
+      note
     ).run();
+
+    if (env.MAKE_WEBHOOK_URL) {
+      try {
+        await fetch(env.MAKE_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type,
+            name,
+            contact,
+            origin,
+            interest,
+            placeName,
+            category,
+            note,
+            source: "conocezapotlanejo.com",
+            createdAt: new Date().toISOString(),
+          }),
+        });
+      } catch (webhookErr) {
+        console.error("make-webhook-failed", webhookErr);
+      }
+    }
 
     return Response.json({ ok: true }, { status: 201 });
   } catch (error) {
