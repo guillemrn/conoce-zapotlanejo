@@ -11,9 +11,44 @@ const Arrow = () => (
 
 const revealText = "No queremos crear otra lista genérica. Queremos reunir lugares recomendados por la comunidad, revisarlos con criterio local y convertirlos en una guía útil para vivir mejor Zapotlanejo.";
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Conoce Zapotlanejo ya está disponible?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Aún no. Estamos preparando la primera versión. Si te registras, te avisaremos cuando esté lista para probarse.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Quién puede recomendar un lugar?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Cualquier persona que conozca un negocio, espacio, evento o experiencia valiosa en Zapotlanejo. Revisaremos cada recomendación antes de publicarla.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Tendrá algún costo?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Registrarte o recomendar un lugar en esta etapa no tiene costo. Comunicaremos con claridad cualquier cambio futuro.",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main className="page-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Motion />
 
       <header className="site-header">
@@ -58,7 +93,7 @@ export default function Home() {
         <div className="marquee-track">
           {[0, 1].map((loop) => (
             <span className="marquee-group" aria-hidden={loop === 1} key={loop}>
-              <span>Sabores locales</span><i>✦</i><span>Moda y textil</span><i>✦</i><span>Historia</span><i>✦</i><span>Rincones</span><i>✦</i><span>Comunidad</span><i>✦</i>
+              <span>Sabores locales</span><i /><span>Moda y textil</span><i /><span>Historia</span><i /><span>Rincones</span><i /><span>Comunidad</span><i />
             </span>
           ))}
         </div>
