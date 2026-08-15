@@ -35,6 +35,10 @@ async function createLead(request: Request, env: Env): Promise<Response> {
       return Response.json({ error: "Nombre y contacto son obligatorios" }, { status: 400 });
     }
 
+    if (body.privacyConsent !== "accepted") {
+      return Response.json({ error: "Debes aceptar el aviso de privacidad" }, { status: 400 });
+    }
+
     const origin = clean(body.origin, 80);
     const interest = clean(body.interest, 80);
     const placeName = clean(body.placeName, 120);
