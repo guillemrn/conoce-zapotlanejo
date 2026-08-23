@@ -20,11 +20,11 @@ export default function PrivacyPage() {
         <p>Podemos solicitar tu nombre, WhatsApp o correo electrónico, relación con Zapotlanejo, intereses, nombre del lugar recomendado, categoría y notas sobre la recomendación. No solicitamos datos personales sensibles.</p>
 
         <h2>Finalidades</h2>
-        <p>Usaremos tus datos para avisarte sobre el lanzamiento de la guía, dar seguimiento a recomendaciones, revisar lugares sugeridos, evitar registros fraudulentos y mejorar la experiencia del sitio.</p>
+        <p>Usaremos tus datos para avisarte sobre el lanzamiento de la plataforma, dar seguimiento a recomendaciones, revisar lugares sugeridos, evitar registros fraudulentos y mejorar la experiencia del sitio.</p>
         <p>También podremos usar información agregada o estadística para entender el interés de la comunidad, sin identificarte de forma individual.</p>
 
         <h2>Analítica y cookies</h2>
-        <p>Si aceptas cookies de analítica, podremos medir visitas, secciones consultadas e interacciones generales del sitio para mejorar la landing y la futura guía. Puedes revisar más detalles en la <a href="/cookies">Política de cookies</a>.</p>
+        <p>Si aceptas cookies de analítica, podremos medir visitas, secciones consultadas e interacciones generales del sitio para mejorar la landing y la futura plataforma. Puedes revisar más detalles en la <a href="/cookies">Política de cookies</a>.</p>
 
         <h2>Transferencias</h2>
         <p>Podemos usar proveedores tecnológicos para almacenar registros, automatizar seguimiento o medir analítica. Estos proveedores deberán tratar la información únicamente para las finalidades indicadas.</p>

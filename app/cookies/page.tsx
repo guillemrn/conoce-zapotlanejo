@@ -20,7 +20,7 @@ export default function CookiesPage() {
         <p>Son necesarias para recordar tus preferencias básicas, como si aceptaste o rechazaste la analítica. Sin ellas, el sitio no podría conservar esa elección.</p>
 
         <h2>Cookies de analítica</h2>
-        <p>Con tu consentimiento, podremos usar software de analítica para medir visitas, páginas consultadas, origen aproximado del tráfico, dispositivo, navegador e interacciones generales. Esta información nos ayuda a mejorar la landing y priorizar la futura guía.</p>
+        <p>Con tu consentimiento, podremos usar software de analítica para medir visitas, páginas consultadas, origen aproximado del tráfico, dispositivo, navegador e interacciones generales. Esta información nos ayuda a mejorar la landing y priorizar la futura plataforma.</p>
 
         <h2>Proveedores externos</h2>
         <p>Cuando se integre el proveedor de analítica, podrá establecer sus propias cookies o identificadores conforme a su documentación. La analítica deberá activarse sólo si aceptas esa categoría.</p>

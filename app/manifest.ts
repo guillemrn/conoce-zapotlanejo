@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Conoce Zapotlanejo",
     short_name: "Conoce Zapotlanejo",
-    description: "Guía digital colaborativa para descubrir negocios, lugares, sabores y experiencias recomendadas en Zapotlanejo, Jalisco.",
+    description: "Plataforma interactiva para descubrir negocios, lugares, sabores, rutas y experiencias recomendadas en Zapotlanejo, Jalisco.",
     start_url: "/",
     display: "standalone",
     background_color: "#f5efe3",

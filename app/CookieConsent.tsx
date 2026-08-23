@@ -39,7 +39,7 @@ export default function CookieConsent() {
   return (
     <section className="cookie-consent" aria-label="Preferencias de cookies">
       <div>
-        <p>Usamos cookies necesarias para que el sitio funcione y, con tu permiso, analítica para mejorar la guía.</p>
+        <p>Usamos cookies necesarias para que el sitio funcione y, con tu permiso, analítica para mejorar la plataforma.</p>
         <Link href="/cookies">Ver política de cookies</Link>
       </div>
       <div className="cookie-actions">

@@ -9,7 +9,7 @@ const Arrow = () => (
   </svg>
 );
 
-const revealText = "No queremos crear otra lista genérica. Queremos reunir lugares recomendados por la comunidad, revisarlos con criterio local y convertirlos en una guía útil para vivir mejor Zapotlanejo.";
+const revealText = "No queremos crear otra lista genérica. Queremos construir una plataforma viva: recomendaciones con criterio local, rutas que conecten lugares y una forma más auténtica de vivir Zapotlanejo.";
 
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -73,14 +73,14 @@ export default function Home() {
 
       <section className="hero" id="inicio">
         <div className="hero-copy">
-          <p className="eyebrow">Próximamente, una guía hecha desde Zapotlanejo</p>
+          <p className="eyebrow">Próximamente, una plataforma viva hecha desde Zapotlanejo</p>
           <h1>Zapotlanejo se conoce <em>viviéndolo.</em></h1>
-          <p className="hero-lead">Estamos preparando una guía digital para descubrir dónde comer, comprar y qué hacer en Zapotlanejo, Jalisco, con lugares recomendados por la comunidad.</p>
+          <p className="hero-lead">Estamos preparando una plataforma interactiva para descubrir lugares, sabores, compras, historias y rutas locales recomendadas por la comunidad.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#registro">Quiero acceso anticipado <Arrow /></a>
-            <a className="button button-secondary" href="#registro">Recomendar un lugar <Arrow /></a>
+            <a className="button button-primary" href="#registro">Recomendar o registrar <Arrow /></a>
+            <a className="button button-secondary" href="#registro">Quiero acceso anticipado <Arrow /></a>
           </div>
-          <p className="hero-note">Déjanos tus datos para recibir el lanzamiento o comparte un lugar para revisión.</p>
+          <p className="hero-note">Comparte un negocio, espacio o experiencia local; también puedes dejar tus datos para recibir el lanzamiento.</p>
         </div>
 
         <figure className="hero-photo-frame">
@@ -147,9 +147,9 @@ export default function Home() {
       </section>
 
       <section className="register-section" id="registro">
-        <div className="register-heading"><p>Sé parte desde el inicio</p><h2>Ayúdanos a construir la primera guía de <em>recomendaciones.</em></h2></div>
+        <div className="register-heading"><p>Sé parte desde el inicio</p><h2>Ayúdanos a construir una plataforma de <em>rutas y recomendaciones.</em></h2></div>
         <div className="register-grid">
-          <div className="register-copy"><p>Elige si quieres recibir aviso del lanzamiento o recomendar un lugar de Zapotlanejo para revisión.</p><ul><li>Te avisaremos cuando la primera versión esté lista</li><li>Podrás sugerir lugares, negocios o experiencias locales</li><li>Revisaremos las recomendaciones antes de publicarlas</li></ul></div>
+          <div className="register-copy"><p>Empieza recomendando o registrando un lugar de Zapotlanejo. Si solo quieres recibir el lanzamiento, puedes cambiar de opción en el formulario.</p><ul><li>Podrás sugerir lugares, negocios, rutas o experiencias locales</li><li>Nos dirás si es tu negocio o si lo recomiendas como visitante</li><li>Revisaremos las recomendaciones antes de integrarlas a la plataforma</li></ul></div>
           <SignupForm />
         </div>
       </section>
@@ -173,7 +173,7 @@ export default function Home() {
             height="80"
           />
         </a>
-        <p>Una iniciativa comunitaria para descubrir y compartir lugares recomendados de Zapotlanejo.</p>
+        <p>Una plataforma comunitaria para descubrir, recorrer y compartir lo mejor de Zapotlanejo.</p>
         <a className="footer-link" href="#registro">Registrarme o recomendar <Arrow /></a>
         <nav className="legal-links" aria-label="Documentos legales">
           <a href="/privacidad">Privacidad</a>

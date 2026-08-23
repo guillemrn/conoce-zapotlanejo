@@ -12,11 +12,11 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL("https://conocezapotlanejo.com"),
   title: {
-    default: "Conoce Zapotlanejo | Guía local de lugares recomendados",
+    default: "Conoce Zapotlanejo | Plataforma interactiva local",
     template: "%s | Conoce Zapotlanejo",
   },
   description:
-    "Guía digital en preparación para descubrir dónde comer, comprar y qué hacer en Zapotlanejo, Jalisco, con recomendaciones revisadas de la comunidad.",
+    "Plataforma interactiva en preparación para descubrir lugares, sabores, compras, historias y rutas locales recomendadas por la comunidad de Zapotlanejo, Jalisco.",
   applicationName: "Conoce Zapotlanejo",
   authors: [{ name: "Comunidad de Conoce Zapotlanejo" }],
   creator: "Conoce Zapotlanejo",
@@ -26,7 +26,9 @@ export const metadata: Metadata = {
     "Zapotlanejo",
     "Zapotlanejo Jalisco",
     "Conoce Zapotlanejo",
-    "guía de Zapotlanejo",
+    "plataforma interactiva Zapotlanejo",
+    "rutas en Zapotlanejo",
+    "recomendaciones Zapotlanejo",
     "ropa en Zapotlanejo",
     "turismo Zapotlanejo",
     "compras Zapotlanejo",
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     "restaurantes Zapotlanejo",
     "qué hacer en Zapotlanejo",
     "lugares para visitar en Zapotlanejo",
-    "directorio local Zapotlanejo",
+    "experiencias locales Zapotlanejo",
   ],
   alternates: {
     canonical: "/",
@@ -51,9 +53,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
   },
   openGraph: {
-    title: "Conoce Zapotlanejo | Guía local de lugares recomendados",
+    title: "Conoce Zapotlanejo | Plataforma interactiva local",
     description:
-      "Una guía digital en preparación para descubrir lugares, sabores, moda, comercios y experiencias recomendadas en Zapotlanejo, Jalisco.",
+      "Una plataforma viva para descubrir lugares, sabores, moda, comercios, rutas y experiencias recomendadas en Zapotlanejo, Jalisco.",
     url: "https://conocezapotlanejo.com",
     siteName: "Conoce Zapotlanejo",
     locale: "es_MX",
@@ -63,15 +65,15 @@ export const metadata: Metadata = {
         url: "/open-graph.jpg",
         width: 1200,
         height: 630,
-        alt: "Conoce Zapotlanejo, guía digital de lugares recomendados por la comunidad",
+        alt: "Conoce Zapotlanejo, plataforma interactiva de rutas y recomendaciones locales",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Conoce Zapotlanejo | Guía local de lugares recomendados",
+    title: "Conoce Zapotlanejo | Plataforma interactiva local",
     description:
-      "Descubre lugares, gastronomía, moda y experiencias recomendadas por la comunidad en Zapotlanejo, Jalisco.",
+      "Descubre lugares, gastronomía, moda, rutas y experiencias recomendadas por la comunidad en Zapotlanejo, Jalisco.",
     images: ["/open-graph.jpg"],
   },
   robots: {
@@ -111,9 +113,9 @@ const jsonLd = {
       "@id": "https://conocezapotlanejo.com/#website",
       url: "https://conocezapotlanejo.com",
       name: "Conoce Zapotlanejo",
-      alternateName: "Guía local de Zapotlanejo",
+      alternateName: "Plataforma interactiva de Zapotlanejo",
       description:
-        "Guía digital en preparación para descubrir negocios, lugares, sabores y experiencias en Zapotlanejo, Jalisco.",
+        "Plataforma interactiva en preparación para descubrir negocios, lugares, sabores, rutas y experiencias en Zapotlanejo, Jalisco.",
       inLanguage: "es-MX",
       publisher: {
         "@id": "https://conocezapotlanejo.com/#organization",
@@ -140,9 +142,9 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://conocezapotlanejo.com/#webpage",
       url: "https://conocezapotlanejo.com",
-      name: "Conoce Zapotlanejo | Guía local de lugares recomendados",
+      name: "Conoce Zapotlanejo | Plataforma interactiva local",
       description:
-        "Landing de registro para recibir el lanzamiento y recomendar lugares, negocios y experiencias de Zapotlanejo, Jalisco.",
+        "Landing de registro para recibir el lanzamiento y recomendar lugares, negocios, rutas y experiencias de Zapotlanejo, Jalisco.",
       isPartOf: {
         "@id": "https://conocezapotlanejo.com/#website",
       },
