@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import ClarityAnalytics from "./ClarityAnalytics";
 import CookieConsent from "./CookieConsent";
 import "./globals.css";
 
@@ -199,6 +200,7 @@ export default function RootLayout({
       >
         {children}
         <CookieConsent />
+        <ClarityAnalytics />
         <Analytics />
       </body>
     </html>

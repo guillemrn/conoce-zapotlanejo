@@ -102,6 +102,12 @@ Use build and validation commands for targeted diagnosis after a remote failure,
 
 The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
 
+## Analytics
+
+Microsoft Clarity loads only after the visitor accepts analytics cookies. Add
+`NEXT_PUBLIC_CLARITY_PROJECT_ID` in Vercel under Project Settings → Environment
+Variables, then redeploy the site.
+
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
