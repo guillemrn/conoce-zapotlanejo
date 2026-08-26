@@ -180,7 +180,7 @@ export default function Home() {
           <a href="/terminos">Términos</a>
           <a href="/cookies">Cookies</a>
         </nav>
-        <p className="footer-credit">Diseñado y desarrollado por <a href="https://guillermoml.com" target="_blank" rel="noreferrer">Guillermo Moreno</a>.</p>
+        <p className="footer-credit">Hecho por <a href="https://guillermoml.com" target="_blank" rel="noreferrer">Guillermo Moreno</a>.</p>
       </footer>
     </main>
   );
