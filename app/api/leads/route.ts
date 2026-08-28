@@ -16,6 +16,14 @@ const isValidContact = (value: string) => {
   return value.replace(/\D/g, "").length >= 8;
 };
 
+const cleanStringArray = (value: unknown, limit = 80) => {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => clean(item, limit))
+    .filter(Boolean)
+    .slice(0, 8);
+};
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Record<string, unknown>;
@@ -29,8 +37,11 @@ export async function POST(request: Request) {
     const name = clean(body.name, 80);
     const contact = clean(body.contact, 120);
     const placeName = clean(body.placeName, 120);
-    const category = clean(body.category, 80);
+    const categories = cleanStringArray(body.categories);
+    const category = categories.join(", ") || clean(body.category, 80);
     const placeRelation = clean(body.placeRelation, 120);
+    const hasPhysicalLocation = clean(body.hasPhysicalLocation, 20);
+    const address = clean(body.address, 180);
 
     if (!name || !contact) {
       return NextResponse.json(
@@ -60,6 +71,23 @@ export async function POST(request: Request) {
       );
     }
 
+    if (
+      type === "recommendation" &&
+      !["yes", "no", "unsure"].includes(hasPhysicalLocation)
+    ) {
+      return NextResponse.json(
+        { error: "Indica si el lugar cuenta con establecimiento físico" },
+        { status: 400 }
+      );
+    }
+
+    if (type === "recommendation" && hasPhysicalLocation === "yes" && !address) {
+      return NextResponse.json(
+        { error: "Agrega el domicilio o una referencia del establecimiento" },
+        { status: 400 }
+      );
+    }
+
     const now = new Date().toISOString();
     const lead = {
       type,
@@ -68,8 +96,11 @@ export async function POST(request: Request) {
       origin: clean(body.origin, 80),
       interest: clean(body.interest, 80),
       placeName,
+      categories,
       category,
       placeRelation,
+      hasPhysicalLocation,
+      address: hasPhysicalLocation === "yes" ? address : "",
       note: clean(body.note),
       privacyConsent: "accepted",
       privacyAcceptedAt: now,

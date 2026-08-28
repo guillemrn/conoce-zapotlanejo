@@ -3,6 +3,23 @@
 import { FormEvent, useRef, useState } from "react";
 
 type Mode = "early_access" | "recommendation";
+type PhysicalLocation = "" | "yes" | "no" | "unsure";
+
+const categoryOptions = [
+  "Comida y bebida",
+  "Moda y compras",
+  "Cultura y turismo",
+  "Hospedaje",
+  "Servicio local",
+  "Productores",
+  "Desarrollo rural",
+  "Mano de obra",
+  "Servicios médicos",
+  "Medicina alternativa",
+  "Cuidado personal",
+  "Fabricantes de ropa",
+  "Otro",
+];
 
 const CheckIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -18,10 +35,15 @@ const SubmitArrow = () => (
 
 export default function SignupForm() {
   const contactInputRef = useRef<HTMLInputElement>(null);
+  const categoriesRef = useRef<HTMLFieldSetElement>(null);
+  const addressInputRef = useRef<HTMLInputElement>(null);
   const [mode, setMode] = useState<Mode>("recommendation");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("No pudimos enviar el formulario. Revisa tu conexión y vuelve a intentarlo.");
   const [contactHasError, setContactHasError] = useState(false);
+  const [categoriesHaveError, setCategoriesHaveError] = useState(false);
+  const [addressHasError, setAddressHasError] = useState(false);
+  const [physicalLocation, setPhysicalLocation] = useState<PhysicalLocation>("");
   const modeHint = mode === "early_access"
     ? "Déjanos un contacto para avisarte cuando la primera versión esté lista."
     : "Sugiere un negocio, espacio o experiencia local. Puede ser uno que te encanta o uno que tú administras.";
@@ -43,8 +65,11 @@ export default function SignupForm() {
     event.preventDefault();
     setStatus("sending");
     const formElement = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(formElement).entries());
+    const formData = new FormData(formElement);
+    const payload = Object.fromEntries(formData.entries());
+    const categories = formData.getAll("categories").filter((value): value is string => typeof value === "string");
     const contact = typeof payload.contact === "string" ? payload.contact.trim() : "";
+    const address = typeof payload.address === "string" ? payload.address.trim() : "";
 
     if (!isValidContact(contact)) {
       setErrorMessage("Escribe un correo válido o un WhatsApp con al menos 8 dígitos.");
@@ -54,11 +79,27 @@ export default function SignupForm() {
       return;
     }
 
+    if (mode === "recommendation" && categories.length === 0) {
+      setErrorMessage("Elige al menos una categoría para el lugar.");
+      setCategoriesHaveError(true);
+      setStatus("error");
+      categoriesRef.current?.focus();
+      return;
+    }
+
+    if (mode === "recommendation" && physicalLocation === "yes" && !address) {
+      setErrorMessage("Agrega el domicilio o una referencia del establecimiento.");
+      setAddressHasError(true);
+      setStatus("error");
+      addressInputRef.current?.focus();
+      return;
+    }
+
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...payload, type: mode }),
+        body: JSON.stringify({ ...payload, categories, type: mode }),
       });
       if (!response.ok) {
         const data = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -70,6 +111,9 @@ export default function SignupForm() {
       }
       formElement.reset();
       setContactHasError(false);
+      setCategoriesHaveError(false);
+      setAddressHasError(false);
+      setPhysicalLocation("");
       setStatus("success");
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "No pudimos enviar el formulario. Revisa tu conexión y vuelve a intentarlo.");
@@ -81,12 +125,17 @@ export default function SignupForm() {
     setMode(next);
     setStatus("idle");
     setContactHasError(false);
+    setCategoriesHaveError(false);
+    setAddressHasError(false);
+    setPhysicalLocation("");
   }
 
   function recoverFromError() {
     if (status === "error") {
       setStatus("idle");
       setContactHasError(false);
+      setCategoriesHaveError(false);
+      setAddressHasError(false);
     }
   }
 
@@ -121,11 +170,33 @@ export default function SignupForm() {
             </div>
           ) : (
             <>
-              <div className="field-grid">
+              <div className="field-grid field-grid--single">
                 <label><span>Nombre del lugar o negocio</span><input name="placeName" placeholder="Ej. Tacos Don José" required maxLength={120} /></label>
-                <label><span>Categoría del lugar</span><select name="category" defaultValue="" required><option value="" disabled>Selecciona una categoría</option><option>Comida y bebida</option><option>Moda y compras</option><option>Cultura y turismo</option><option>Hospedaje</option><option>Servicio local</option><option>Otro</option></select></label>
               </div>
+              <fieldset className="chip-field" ref={categoriesRef} tabIndex={-1} aria-invalid={categoriesHaveError} aria-describedby={categoriesHaveError ? "form-error" : undefined}>
+                <legend>Categorías del lugar</legend>
+                <p>Puedes elegir más de una.</p>
+                <div className="chip-grid">
+                  {categoryOptions.map((category) => (
+                    <label className="category-chip" key={category}>
+                      <input name="categories" type="checkbox" value={category} />
+                      <span>{category}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
               <label className="full-field"><span>Tu relación con el lugar</span><select name="placeRelation" defaultValue="" required><option value="" disabled>Selecciona una opción</option><option>Soy dueño/a del negocio</option><option>Trabajo o colaboro ahí</option><option>Lo recomiendo como cliente o visitante</option><option>Lo conozco por la comunidad</option><option>Otro</option></select></label>
+              <fieldset className="choice-field">
+                <legend>¿Tiene establecimiento físico?</legend>
+                <div className="choice-grid">
+                  <label><input name="hasPhysicalLocation" type="radio" value="yes" required checked={physicalLocation === "yes"} onChange={() => setPhysicalLocation("yes")} /><span>Sí</span></label>
+                  <label><input name="hasPhysicalLocation" type="radio" value="no" required checked={physicalLocation === "no"} onChange={() => setPhysicalLocation("no")} /><span>No</span></label>
+                  <label><input name="hasPhysicalLocation" type="radio" value="unsure" required checked={physicalLocation === "unsure"} onChange={() => setPhysicalLocation("unsure")} /><span>No estoy seguro/a</span></label>
+                </div>
+              </fieldset>
+              {physicalLocation === "yes" && (
+                <label className="full-field"><span>Domicilio</span><input ref={addressInputRef} name="address" placeholder="Calle, número, colonia o referencia" required maxLength={180} aria-invalid={addressHasError} aria-describedby={addressHasError ? "form-error" : undefined} /></label>
+              )}
               <label className="full-field"><span>Por qué vale la pena</span><textarea name="note" placeholder="Qué probar, qué comprar o por qué debería conocerlo la gente" maxLength={500} rows={3} /></label>
             </>
           )}
@@ -142,7 +213,7 @@ export default function SignupForm() {
               {status !== "sending" && <SubmitArrow />}
             </button>
           </div>
-          {status === "error" && <p className="form-error" id={contactHasError ? "contact-error" : undefined} role="alert">{errorMessage}</p>}
+          {status === "error" && <p className="form-error" id={contactHasError ? "contact-error" : "form-error"} role="alert">{errorMessage}</p>}
         </form>
       )}
     </div>
