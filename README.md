@@ -1,114 +1,198 @@
-# vinext-starter
+# Conoce Zapotlanejo
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Landing page para Conoce Zapotlanejo: una plataforma interactiva para descubrir, recomendar y registrar lugares, negocios y experiencias locales de Zapotlanejo.
 
-## Prerequisites
+El sitio permite:
+
+- Recibir recomendaciones de lugares o negocios.
+- Registrar personas interesadas en recibir aviso del lanzamiento.
+- Enviar nuevos registros a Make mediante webhook.
+- Medir visitas con Vercel Analytics.
+- Cargar Microsoft Clarity solo cuando la persona acepta cookies de analitica.
+
+## Requisitos
 
 - Node.js `>=22.13.0`
-- Linux with `flock`, `curl`, and GNU `timeout`
+- npm
 
-## Sites Lifecycle
+Para verificar tu version de Node:
 
-The Sites lifecycle CLI runs the locked dependency install before returning this checkout. Edit the source under `app/`, then checkpoint when a coherent milestone is ready to inspect or share. The remote Sites builder runs `npm run build` against the pushed commit. Do not repeat install or build as a normal pre-checkpoint step.
-
-This starter does not use `wrangler.jsonc`.
-
-`install:ci` is intentionally a single, non-retrying `npm ci`. It refuses a concurrent install for the same project, consumes a matching image-seeded npm cache with `--prefer-offline` while retaining registry fallback for a missing cache object, otherwise downloads and verifies the complete vinext tarball recorded in `package-lock.json`, limits npm to one socket, and terminates a stalled install. `build` applies a short timeout and then validates the Sites artifact. These helpers target Linux and use GNU `timeout`; they are not native macOS scripts.
-
-Scripts that need writable project-scoped home, npm, XDG, and temporary paths use `scripts/sites-env.sh`. The `dev` and `start` scripts honor the caller's runtime environment and keep Wrangler logs inside the checkout. The generated `.sites-runtime/` directory is disposable and ignored by Git.
-
-## Included Shape
-
-- edit site code under `app/`
-- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```bash
+node -v
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+Si la version es menor a `22.13.0`, instala o activa una version compatible antes de correr el proyecto.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+## Instalacion
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+Desde la carpeta del proyecto:
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+```bash
+npm install
+```
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+## Variables de entorno
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+Crea un archivo `.env.local` en la raiz del proyecto. Puedes partir de `.env.example`:
 
-## Diagnostic Commands
+```bash
+cp .env.example .env.local
+```
 
-- `npm run install:ci`: perform the one bounded lockfile install
-- `npm run dev`: start the Vite/Vinext development server
-- `npm run build`: build and validate the deployable Sites artifact
-- `npm run start`: start the built Vinext application
-- `npm test`: build, validate, and verify the rendered development-preview metadata
-- `npm run validate:artifact`: recheck an existing artifact's manifest and ESM `default.fetch` export
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+Variables esperadas:
 
-Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
+```env
+MAKE_WEBHOOK_URL=https://hook.us2.make.com/tu-webhook
+NEXT_PUBLIC_CLARITY_PROJECT_ID=tu-id-de-clarity
+```
 
-The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
+### MAKE_WEBHOOK_URL
 
-## Analytics
+URL del webhook de Make que recibe los registros del formulario.
 
-Microsoft Clarity loads only after the visitor accepts analytics cookies. Add
-`NEXT_PUBLIC_CLARITY_PROJECT_ID` in Vercel under Project Settings → Environment
-Variables, then redeploy the site.
+Debe tratarse como secreto. No debe subirse al repositorio ni compartirse en documentos publicos.
 
-## Learn More
+Si no se configura, el formulario puede responder localmente, pero no enviara registros a Make.
 
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+### NEXT_PUBLIC_CLARITY_PROJECT_ID
+
+ID del proyecto de Microsoft Clarity.
+
+Puede ser publico porque se carga en el navegador. Aun asi, normalmente se configura como variable de entorno en Vercel.
+
+Clarity solo se carga despues de que la persona acepta cookies de analitica.
+
+## Correr en local
+
+```bash
+npm run dev
+```
+
+Luego abre:
+
+```text
+http://localhost:3000
+```
+
+Si el puerto `3000` esta ocupado, Next.js puede usar otro puerto. Revisa la URL que aparezca en la terminal.
+
+## Comandos utiles
+
+```bash
+npm run dev
+```
+
+Inicia el servidor local de desarrollo.
+
+```bash
+npm run build
+```
+
+Genera el build de produccion y ayuda a detectar errores antes de desplegar.
+
+```bash
+npm run start
+```
+
+Corre el build de produccion localmente. Antes necesitas haber ejecutado `npm run build`.
+
+```bash
+npm run lint
+```
+
+Revisa errores de lint en `app`, `db` y `worker`.
+
+## Estructura principal
+
+```text
+app/
+  page.tsx              Pagina principal de la landing
+  SignupForm.tsx        Formulario de registro/recomendacion
+  api/leads/route.ts    Endpoint que valida y envia leads a Make
+  privacidad/           Aviso de privacidad
+  terminos/             Terminos y condiciones
+  cookies/              Politica de cookies
+public/
+  assets e imagenes publicas del sitio
+TRASPASO.md             Documento de traspaso operativo
+PRODUCT.md              Contexto de producto
+DESIGN.md               Guia visual / criterios de diseno
+.env.example            Ejemplo de variables de entorno
+```
+
+## Flujo del formulario
+
+El formulario vive en `app/SignupForm.tsx`.
+
+Actualmente tiene dos modos:
+
+- Recomendar o registrar un lugar/negocio.
+- Recibir aviso del lanzamiento.
+
+El endpoint que recibe la informacion esta en:
+
+```text
+app/api/leads/route.ts
+```
+
+Ese endpoint:
+
+- Valida datos requeridos.
+- Evita exponer datos personales en logs.
+- Valida que el contacto parezca correo o WhatsApp valido.
+- Usa un campo honeypot basico contra spam.
+- Reenvia la informacion a Make si existe `MAKE_WEBHOOK_URL`.
+
+## Analitica
+
+El sitio incluye:
+
+- Vercel Analytics.
+- Microsoft Clarity, condicionado al consentimiento de cookies.
+
+Para activar Clarity en produccion:
+
+1. Configura `NEXT_PUBLIC_CLARITY_PROJECT_ID` en Vercel.
+2. Redeploy del proyecto.
+3. Verifica que Clarity reciba datos despues de aceptar cookies de analitica.
+
+Importante: mantener masking de inputs en Clarity para evitar capturar datos personales.
+
+## Despliegue
+
+El proyecto esta preparado para desplegarse en Vercel.
+
+Checklist basico para una nueva cuenta o nuevo deployment:
+
+1. Migrar o conectar el repositorio definitivo.
+2. Crear el proyecto en Vercel.
+3. Configurar variables de entorno:
+   - `MAKE_WEBHOOK_URL`
+   - `NEXT_PUBLIC_CLARITY_PROJECT_ID`
+4. Configurar dominio y DNS.
+5. Ejecutar un registro de prueba.
+6. Confirmar que Make recibe el lead.
+7. Confirmar que el correo de notificacion se envia correctamente.
+8. Confirmar que la hoja de Google Sheets recibe el registro.
+
+## Traspaso operativo
+
+Antes de entregar el proyecto a otra persona o equipo, revisar:
+
+- [TRASPASO.md](./TRASPASO.md)
+- Acceso a GitHub.
+- Acceso a Vercel.
+- Variables de entorno en Vercel.
+- Escenario de Make.
+- Google Sheets de registros.
+- Acceso a `conocezapotlanejo@gmail.com`.
+- Microsoft Clarity.
+- DNS del dominio.
+
+## Notas importantes
+
+- No subir `.env.local` al repositorio.
+- No publicar el webhook real de Make.
+- Si se clona la hoja de Google Sheets, tambien hay que actualizar el escenario de Make.
+- Si se recrea el deployment en Vercel, tambien hay que revisar DNS, variables de entorno y dominio.
+- Si se cambia el formulario, revisar tambien `app/api/leads/route.ts` y el escenario de Make para mantener los campos sincronizados.
